@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  web:
+    image: php:8.2-apache
+    container_name: php_web
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: holamundo
+    ports:
+      - "3306:3306"
+ 
